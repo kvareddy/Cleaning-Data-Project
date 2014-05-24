@@ -33,5 +33,5 @@ X$label = Y$V2
 #for each activity and each subject. 
 library(plyr)
 newdata <- ddply(X, .(label,subject), numcolwise(mean))
-
+write.table(newdata, file="tidy.txt")
 
