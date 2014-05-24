@@ -25,5 +25,13 @@ X <- cbind(X, subject)
 #Using descriptive activity names to name the activities in the data set
 desc_names <- read.table("activity_labels.txt", header=FALSE)
 Y <- merge (Y, desc_names, by.x="V1", by.y="V1", sort=FALSE)
+
+#labeling the data set with descriptive activity names. 
 X$label = Y$V2
+
+#a second, independent tidy data set with the average of each variable 
+#for each activity and each subject. 
+library(plyr)
+newdata <- ddply(X, .(label,subject), numcolwise(mean))
+
 
